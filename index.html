@@ -10,24 +10,22 @@
 <body class="shower list">
 
 	<header class="caption">
-		<h1>Shower Presentation Engine</h1>
-		<p>Yours Truly, Famous Inc.</p>
+		<h1>Cинтез медиа:</h1>
+		<p>визуализация аудио на JavaScript</p>
 	</header>
 
 	<section class="slide" id="cover">
-		<h2>Shower Presentation Engine</h2>
-		<p>Brought to you by <a href="http://pepelsbey.net">Vadim Makeev</a></p>
+		<h2>Cинтез медиа:<br>
+		визуализация аудио на&nbsp;JavaScript</h2>
 		<figure>
-			<img class="cover" src="pictures/cover.jpg" alt="Hands on the orange typewriter in a park">
-			<figcaption class="white">
-				<a href="http://fiftyfootshadows.net/">© John Carey</a>
-			</figcaption>
+			<img class="cover" src="pictures/hero.jpg" alt="bar visualization">
+			
 		</figure>
 		<style>
 			#cover h2 {
 				margin:30px 0 0;
-				color:#FFF;
-				text-align:center;
+				color:#000;
+				text-align:right;
 				font-size:70px;
 				}
 			#cover p {
@@ -40,8 +38,206 @@
 				#cover p a {
 					color:#FFF;
 					}
+
+				#cover .cover {
+					width: 100%;
+				}
 		</style>
 	</section>
+
+
+
+
+
+
+
+
+
+	<section class="slide" id="slide_1">
+		
+		<h2>Web Audio API</h2>
+
+		<style>
+			#slide_1 h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+				}
+		</style>
+
+	</section>
+
+
+	<section class="slide">
+		<h2>Web Audio API</h2>
+		<ol>
+			<li>AudioContext</li>
+			<li class="next">MediaElementAudioSourceNode</li>
+			<li class="next">AnalyserNode</li>
+		</ol>
+
+	</section>
+
+
+	<section class="slide" id="audiocontext">
+		<h2>AudioContext</h2>
+		<ul >
+			<li class="next">Граф, состоящий из связанных узлов AudioNode</li>
+			<li class="next">Всё, что происходит при обработке звука, происходит внутри AudioContext</li>
+			<li class="next">Может выступать как слушатель событий и реализует интерфейс EventTarget.</li>
+
+		</ul>
+
+		<style>
+			#audiocontext li {
+				margin-bottom: 1em;
+			}
+		</style>
+	</section>
+
+	<section class="slide" id="audiocontext2">
+		<h2>AudioContext</h2>
+		<pre><code class="next">const audioCtx = new AudioContext();</code>
+
+		<p class="next" id="crossbrowser">Кроссбраузерный вариант:</p>
+
+		<code  class="next">const AudioContext = window.AudioContext ||</code> 
+		<code   class="next">					 window.webkitAudioContext;</code>
+		<code   class="next">const audioCtx = new AudioContext();</code>
+		</pre>
+		<style>
+			#audiocontext2 p {
+				display: block;
+				margin-top: 2em;
+				margin-bottom: .5em;
+				font-size: 35px;
+			}
+
+		</style>
+	</section>
+
+	<section class="slide" id="audiocontext3">
+		<h2>AudioContext.destination</h2>
+		<ul>
+			<li>
+				Ссылка на AudioDestinationNode &mdash; точку назначения для всего аудио в этом контексте. 
+			</li>
+			
+		</ul>
+		<div class="speakers-wrap">
+			<img class="next speakers" src="pictures/speakers1.jpg" alt="speakers">
+			<img class="next speakers" src="pictures/speakers2.jpg" alt="speakers">
+			<img class="next speakers" src="pictures/speakers3.jpg" alt="speakers">
+			<img class="next speakers" src="pictures/speakers4.jpg" alt="speakers">
+		</div>
+
+		<style>
+			#audiocontext3 li {
+				margin-bottom: 1em;
+			}
+
+			.speakers {
+				display: block;
+				max-height: 180px;
+				margin-right: 20px;
+			}
+
+			.speakers-wrap {
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				display: -o-flex;
+				display: flex;
+			}
+		</style>
+	</section>
+
+
+
+
+
+	<section class="slide" id="mediaelement">
+		<h2>MediaElementAudioSourceNode</h2>
+		<ul >
+			<li class="next">AudioNode, созданный из &lt;audio&gt;, &lt;video&gt; или new Audio().</li>
+			<li  class="next">Не имеет входов, только один выход.</li>
+			<li class="next">Может быть создан методом AudioContext.createMediaElementSource.</li>
+		</ul>
+
+		<style>
+			#mediaelement li {
+				margin-bottom: 1em;
+			}
+		</style>
+	</section>
+
+
+	<section class="slide" id="mediaelement2">
+		<h2>MediaElementAudioSourceNode</h2>
+		<pre><code class="next">const audioEl = new Audio();</code>
+		<code  class="next">audioEl.src = "kek.mp3";</code> 
+		<code   class="next">const audioSrc = audioCtx.createMediaElementSource(audioEl);</code>
+		</pre>
+
+		
+	</section>
+
+
+	<section class="slide" id="analysernode">
+		<h2>AnalyserNode</h2>
+		<ul >
+			
+			<li>Это AudioNode, который на входе принимает аудиопоток и передаёт его без изменений на выход.</li>
+			<li  class="next">При этом генерирует данные о частоте.</li>
+			<li class="next">Их можно использовать для создания визуализаций</li>
+		</ul>
+
+		<style>
+			#analysernode li {
+				margin-bottom: 1em;
+			}
+		</style>
+	</section>
+
+	<section class="slide" id="analysernode3">
+		<h2>AnalyserNode</h2>
+		
+		<img src="pictures/analyser.svg" alt="analyser">
+
+		
+	</section>
+
+	<section class="slide" id="analysernode2">
+		<h2>AnalyserNode</h2>
+		<pre><code class="next">const analyser = audioCtx.createAnalyser();</code>
+		<code  class="next">audioEl.src = "kek.mp3";</code> 
+		<code   class="next">const audioSrc = audioCtx.createMediaElementSource(audioEl);</code>
+		</pre>
+
+		
+	</section>
+
+<section class="slide" id="analysernode3">
+		<h2>Подключаем аудио</h2>
+		<pre><code>audioSrc.connect(analyser);</code>
+		<code>audioSrc.connect(audioCtx.destination);</code> 
+		</pre>
+
+		
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<section class="slide">
 		<h2>Shower key features</h2>
