@@ -102,9 +102,9 @@
 
 		<p class="next" id="crossbrowser">Кроссбраузерный вариант:</p>
 
-		<code  class="next">const AudioContext = window.AudioContext ||</code> 
+		<code  class="next">const Context = window.AudioContext ||</code> 
 		<code   class="next">					 window.webkitAudioContext;</code>
-		<code   class="next">const audioCtx = new AudioContext();</code>
+		<code   class="next">const audioCtx = new Context();</code>
 		</pre>
 		<style>
 			#audiocontext2 p {
@@ -162,7 +162,7 @@
 		<ul >
 			<li class="next">AudioNode, созданный из &lt;audio&gt;, &lt;video&gt; или new Audio().</li>
 			<li  class="next">Не имеет входов, только один выход.</li>
-			<li class="next">Может быть создан методом AudioContext.createMediaElementSource.</li>
+			<li class="next">Создаётся методом AudioContext.createMediaElementSource.</li>
 		</ul>
 
 		<style>
@@ -211,182 +211,905 @@
 	<section class="slide" id="analysernode2">
 		<h2>AnalyserNode</h2>
 		<pre><code class="next">const analyser = audioCtx.createAnalyser();</code>
-		<code  class="next">audioEl.src = "kek.mp3";</code> 
-		<code   class="next">const audioSrc = audioCtx.createMediaElementSource(audioEl);</code>
+		<code>audioSrc.connect(analyser);</code>
+		<code>audioSrc.connect(audioCtx.destination);</code>
 		</pre>
 
 		
 	</section>
 
 <section class="slide" id="analysernode3">
-		<h2>Подключаем аудио</h2>
-		<pre><code>audioSrc.connect(analyser);</code>
-		<code>audioSrc.connect(audioCtx.destination);</code> 
-		</pre>
-
-		
-	</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<section class="slide">
-		<h2>Shower key features</h2>
-		<ol>
-			<li>Built on HTML, CSS and vanilla JavaScript</li>
-			<li>Works in all modern browsers</li>
-			<li>Themes are separated from engine</li>
-			<li>Modular and extensible</li>
-			<li>Fully keyboard accessible</li>
-			<li>Printable to PDF</li>
-		</ol>
-		<p class="note">Shower ['ʃəuə] noun. A person or thing that shows.</p>
-	</section>
-
-	<section class="slide">
-		<h2>Plain text on your slides</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
-	</section>
-
-	<section class="slide">
-		<h2>Two columns if you like</h2>
-		<p class="double">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-	</section>
-
-	<section class="slide">
-		<h2>All kind of lists</h2>
-		<ol>
-			<li>Simple lists are marked with bullets</li>
-			<li>Ordered lists begin with a number</li>
-			<li>You can even nest lists one inside another
-				<ul>
-					<li>Or mix their types</li>
-					<li>But do not go too far</li>
-					<li>Otherwise audience will be bored</li>
-				</ul>
-			</li>
-			<li>Look, seven rows exactly!</li>
-		</ol>
-	</section>
-
-	<section class="slide">
-		<h2>Serious citations</h2>
-		<figure>
-			<blockquote>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-			</blockquote>
-			<figcaption>Marcus Tullius Cicero</figcaption>
-		</figure>
-	</section>
-
-	<section class="slide">
-		<h2>Code samples</h2>
+		<h2>Frequency Data</h2>
 		<pre>
-			<code>&lt;!DOCTYPE html&gt;</code>
-			<code class="mark">&lt;html lang="en"&gt;</code>
-			<code><mark>&lt;head&gt;</mark> <span class="comment">&lt;!--Comment--&gt;</span></code>
-			<code>    &lt;title&gt;Shower&lt;/title&gt;</code>
-			<code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
-			<code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
-			<code><mark>&lt;/head&gt;</mark></code>
+			<code >const count = 100</code>
+			<code >const fData = new Uint8Array(count);</code>
+			<br>
+			<code class="next">analyser.getByteFrequencyData(fData);</code>
 		</pre>
 	</section>
 
-	<section class="slide">
-		<h2>Even tables</h2>
-		<table>
-		<tr>
-			<th scope="col">Locavore</th>
-			<th>Umami</th>
-			<th>Helvetica</th>
-			<th>Vegan</th>
-		</tr>
-		<tr>
-			<th scope="row">Fingerstache</th>
-			<td>Kale</td>
-			<td>Chips</td>
-			<td>Keytar</td>
-		</tr>
-		<tr>
-			<th scope="row">Sriracha</th>
-			<td>Gluten-free</td>
-			<td>Ennui</td>
-			<td>Keffiyeh</td>
-		</tr>
-		<tr>
-			<th scope="row">Thundercats</th>
-			<td>Jean</td>
-			<td>Shorts</td>
-			<td>Biodiesel</td>
-		</tr>
-		<tr>
-			<th scope="row">Terry</th>
-			<td>Richardson</td>
-			<td>Swag</td>
-			<td>Blog</td>
-		</tr>
-		</table>
-		<p>It’s good to have information organized.</p>
-	</section>
-
-	<section class="slide" id="picture">
-		<h2>Pictures</h2>
-		<figure>
-			<img class="cover" src="pictures/picture.jpg" alt="Orange typewriter on a wooden table close-up">
-			<figcaption class="white">
-				<a href="http://fiftyfootshadows.net/">© John Carey</a>
-			</figcaption>
-		</figure>
+	<section class="slide" id="analysernode3">
+		<pre>
+		<code>const Context = window.AudioContext ||</code> 
+		<code>					 window.webkitAudioContext;</code>
+		<code>const audioCtx = new Context();</code>
+		<code>const audioEl = new Audio();</code>
+		<code>audioEl.src = "kek.mp3";</code> 
+		<code>const audioSrc = audioCtx.createMediaElementSource(audioEl);</code>
+		<code>const analyser = audioCtx.createAnalyser();</code>
+		<code>audioSrc.connect(analyser);</code>
+		<code>audioSrc.connect(audioCtx.destination);</code> 
+		<code >const count = 100;</code>
+		<code >const fData = new Uint8Array(count);</code>
+		<code>let audioVisual; <span class="comment">// здесь будет requestAnimationFrame</span></code> 
+		</pre>
 		<style>
-			#picture h2 {
-				color:#FFF;
-				}
+			#analysernode3 code {
+				font-size: 20px;
+			}
 		</style>
 	</section>
 
-	<section class="slide">
-		<h2 class="shout shrink">You can even shout this way</h2>
-	</section>
+	<section class="slide" id="easy">
+		<h2 class="shout shrink">EASY</h2>
+</section>
 
-	<section class="slide">
-		<h2>Inner navigation</h2>
-		<ol>
-			<li>Lets you reveal list items one by one</li>
-			<li class="next">To keep some key points</li>
-			<li class="next">In secret from audience</li>
-			<li class="next">But it will work only once</li>
-			<li class="next">Nobody wants to see the same joke twice</li>
-		</ol>
-	</section>
 
-	<section class="slide grid">
-		<h2>All nicely aligned to grid</h2>
-	</section>
 
-	<section class="slide" id="see-more">
-		<h2 class="shout">
-			<img src="pictures/logo.svg" alt="Shower logo">
-			<a href="https://github.com/shower/shower">See more on GitHub</a>
-		</h2>
+<section class="slide" id="solutions">
+		<h2>Решения визуализаций</h2>
+		<ul >
+			<li class="next">&lt;div&gt;</li>
+			<li  class="next">SVG</li>
+			<li class="next">SVG на D3.js</li>
+			<li class="next">&lt;canvas&gt;</li>
+		</ul>
 		<style>
-			#see-more h2 {
-				font-size:100px
-				}
-			#see-more img {
-				width:0.72em;
-				height:0.72em;
-				}
+			#solutions li {
+				margin-bottom: 1em;
+			}
 		</style>
-	</section>
+</section>
+
+
+
+<section class="slide" id="div">
+		<h2>DIV</h2>
+		
+		<style>
+			#div h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+<section class="slide" id="div">
+		<h2>Bar chart</h2>
+		
+		<style>
+			#div h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+<section class="slide">
+		<pre>
+		<code>function init() {</code> 
+		<code>	for (let i = 0; i < amount; i++) {</code>
+		<code>		let div = document.createElement("div");</code>
+		<code>		div.className = "bar";</code>
+		<code>		container.appendChild(div);</code> 
+		<code>		bars.push(div);</code>
+		<code>	}</code>
+		<code>}</code> 
+		</pre>
+</section>
+
+<section class="slide" id="div2">
+	<div class="double">
+		<pre>
+		<code>.container</code>
+		<code>	min-height: 100vh;</code>
+		<code>	width: 100%;</code> 
+		<code>	display: flex;</code> 
+		<code>	align-items: flex-end;</code>
+		<code>}</code>
+		<code> </code>
+		</pre><pre>
+		<code>.bar {</code> 
+		<code>	height: 90px;</code> 		
+		<code>	flex: 1;</code> 
+		<code>	border-left: 1px solid #000;</code>
+		<code>	will-change: transform;</code>
+		<code>	transform-origin: 50% 100%;</code>
+		<code>}</code>
+		
+		</pre>
+		</div>
+		<style>
+			#div2 code {
+				font-size: 22px;
+			}
+		</style>
+</section>
+
+
+<section class="slide" id="div3">
+		<pre>
+		<code>function renderChart() {</code> 
+		<code>	analyser.getByteFrequencyData(fData);</code>
+		<code>	for (let i = 0; i < amount; i++) {</code>
+		<code>		let y = fData[i], bar = bars[i];</code>
+		<code>		if (bar) {</code>
+		<code>			let hsl = `hsl( ${y} ,100%, 50%)`;</code>
+		<code>			bar.style.backgroundColor = hsl;</code>
+		<code>			bar.style.transform = `scaleY(${y/30})`;</code>
+		<code>		}</code>
+		<code>	}</code> 
+		<code>	audioVisual = requestAnimationFrame(renderChart);</code>
+		<code>}</code> 
+		</pre>
+
+		<style>
+			#div3 code {
+				font-size: 22px;
+			}
+		</style>
+</section>
+
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/div_bars/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+<section class="slide" id="div">
+		<h2>Radial chart</h2>
+		
+		<style>
+			#div h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+<section class="slide">
+		<pre>
+		<code>.container</code>
+		<code>	min-height: 100vh;</code>
+		<code>	width: 100%;</code> 
+		<code>	position: relative;</code> 
+		<code>}</code>
+		</pre>
+</section>
+
+<section class="slide">
+		<pre>
+		<code>.bar {</code> 
+		<code>	position: absolute;</code>
+		<code>	bottom: 50%;</code>
+		<code> 	left: 50%;</code>
+		<code>	height: 50px;</code>
+		<code>	width: 1px;</code>		
+		<code>	will-change: transform;</code>
+		<code>	transform-origin: 50% 100%;</code>
+		<code>}</code>
+		</pre>
+</section>
+
+<section class="slide">
+		<pre>
+		<code>function renderChart() {</code> 
+		<code>	...</code>
+		<code>	let angle = Math.PI * 2 / amount * i;</code>
+		<code>	let deg = angle * 180 / Math.PI;</code>
+		<code>	bar.style.transform = `rotate(${deg}deg)</code>
+		<code>						   scaleY(${y/40})`;</code>
+		<code>	...</code>
+		<code>}</code>
+		</pre>
+
+</section>
+
+
+
+
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/div_rays/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+<section class="slide" id="div">
+		<h2>Поиграться с&nbsp;border-&nbsp;radius?</h2>
+		
+		<style>
+			#div h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+<section class="slide">
+		<pre>
+		<code>.bar {</code> 
+		<code>	height: 90px;</code> 		
+		<code>	flex: 1;</code> 
+		<code>	border-left: 1px solid #000;</code>
+		<code>	will-change: transform;</code>
+		<code>	transform-origin: 50% 100%;</code>
+		<code>	<mark>border-radius: 50%;</mark></code>
+		<code>}</code>
+		</pre>
+
+</section>
+
+<section class="slide" id="div">
+		<h2>C оттенком спектра?</h2>
+		
+		<style>
+			#div h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+
+<section class="slide">
+		<pre>
+		<code>function renderChart() {</code> 
+		<code>	...</code>
+		<code>	let hsl = `hsl( <mark>${y + 20}</mark> ,100%, 50%)`;</code>
+		<code>	...</code>
+		<code>}</code>
+		</pre>
+
+</section>
+
+
+
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/div_flower/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+
+<section class="slide" id="div">
+		<h2>Ещё больше магии&nbsp;CSS! </h2>
+		
+		<style>
+			#div h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+
+<section class="slide">
+		<pre>
+		<code>.bar {</code> 
+		<code>	...</code> 		
+		<code>	<mark>opacity: .5;</mark></code>
+		<code>}</code>
+		</pre>
+
+		<pre>
+		<code>function renderChart() {</code> 
+		<code>	...</code>
+		<code>	let hsl = `hsl( <mark>${y + 60}</mark> ,100%, 50%)`;</code>
+		<code>	...</code>
+		<code>}</code>
+		</pre>
+
+</section>
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/div_magic_flower/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+
+
+<section class="slide" id="div">
+		<h2>SVG фильтр</h2>
+		
+		<style>
+			#div h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+
+<section class="slide" id="goo">
+		<pre>
+		<code>&lt;svg  width="800"&gt;</code> 
+		<code>	&lt;filter id="goo"&gt;</code> 		
+		<code>		&lt;feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/&gt;</code>
+		<code>		&lt;feColorMatrix in="blur" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -9" result="goo"/&gt;</code>
+		<code>		&lt;feComposite in="SourceGraphic" in2="goo" operator="atop"/&gt;</code> 
+		<code>	&lt;/filter&gt;</code>
+		<code>&lt;/svg&gt;</code>
+		</pre>
+
+		<style>
+			#goo code {
+				font-size: 15px;
+			}
+		</style>
+
+</section>
+
+<section class="slide">
+		<pre>
+		<code>.visual {</code> 
+		<code>	...</code> 		
+		<code>	<mark>filter: url("#goo");</mark></code>
+		<code>}</code>
+		</pre>
+</section>
+
+
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/div_goo/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+
+<section class="slide" id="div">
+		<h2>SVG</h2>
+		
+		<style>
+			#div h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+<section class="slide" >
+	<pre>
+		<code>&lt;div class="container"&gt;</code> 
+		<code>	&lt;svg width="100%" height="100%" class="chart"&gt;&lt;/svg&gt;</code> 
+		<code>&lt;/div&gt;</code> 
+	</pre>
+</section>
+
+
+<section class="slide" id="svg">
+		<pre>
+		<code>const w = window.innerWidth;</code> 
+		<code>const h = window.innerHeight;</code> 
+		<code>function init() {</code> 
+		<code>	const svgns = "http://www.w3.org/2000/svg";</code> 		
+		<code>	for (let i = 0; i < amount; i++) {</code>
+		<code>		let rect = document.createElementNS(svgns, "rect");</code>
+		<code>		rect.setAttributeNS(null, "class", "bar" );</code>
+		<code>		rect.setAttributeNS(null, "x", i * w / amount );</code>
+		<code>		rect.setAttributeNS(null, "y", h );</code>
+		<code>	}</code>
+		<code>}</code>
+		</pre>
+
+		<style>
+			#svg code {
+				font-size: 20px;
+			}
+		</style>
+</section>
+
+
+
+<section class="slide" id="svg2">
+	<pre>
+		<code>function init() {</code> 
+		<code>	...</code> 
+		<code>	rect.setAttributeNS(null, "width", w / amount - padding);</code>
+		<code>	rect.setAttributeNS(null, "height", h/10);</code>
+		<code>	chart.appendChild(rect);</code>
+		<code>	bars.push(rect);</code>
+		<code>}</code>
+	</pre>
+	<style>
+			#svg2 code {
+				font-size: 20px;
+			}
+	</style>
+</section>
+
+
+
+
+<section class="slide" id="svg3">
+		<pre>
+		<code>function renderChart() {</code> 
+		<code>	analyser.getByteFrequencyData(fData);</code>
+		<code>	for (let i = 0; i < amount; i++) {</code>
+		<code>		let y = fData[i], bar = bars[i];</code>
+		<code>		if (bar) {</code>
+		<code>			let hsl = `hsl( ${y} ,100%, 50%)`;</code>
+		<code>			bar.setAttributeNS(null, "height", y*3);</code>
+		<code>			bar.setAttributeNS(null, "y", h - y*3);</code>
+		<code>			bar.setAttributeNS(null, "fill", hsl);</code>
+		<code>		}</code>
+		<code>	}</code> 
+		<code>	audioVisual = requestAnimationFrame(renderChart);</code>
+		<code>}</code> 
+		</pre>
+
+		<style>
+			#svg3 code {
+				font-size: 20px;
+			}
+		</style>
+</section>
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/svg_bars/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+
+
+
+<section class="slide" id="feature" >
+		<h2>Не баг, а фича</h2>
+		
+		<style>
+			#feature h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+
+
+
+<section class="slide" id="svg4">
+		<pre>
+		<code>function init() {</code> 
+		<code>	...</code>
+		<code>	rect.setAttributeNS(null, "width", <mark>w / amount - padding</mark>);</code>
+		<code>}</code> 
+		</pre>
+
+		<span>↓</span>
+
+		<pre>
+		<code>function init() {</code> 
+		<code>	...</code>
+		<code>	rect.setAttributeNS(null, "width", <mark>i * w / amount</mark>);</code>
+		<code>}</code> 
+		</pre>
+
+	
+</section>
+
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/svg_wide_bars/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+
+
+
+<section class="slide" id="d3" >
+		<h2>D3.js</h2>
+		
+		<style>
+			#d3 h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+
+<section class="slide" >
+		<pre>
+		<code>&lt;div class="container"&gt;</code> 
+		<code>&lt;/div"&gt;</code> 
+		
+		</pre>
+
+	
+</section>
+
+<section class="slide">
+		<pre>
+		<code>let svgContainer = d3.select(".container")</code> 
+		<code>	.append("svg")</code> 
+		<code>	.attr("class", "bars-wrap")</code> 
+		<code>	.attr("height", h)</code> 
+		<code>	.attr("width", w);</code> 
+		
+		</pre>
+
+	
+</section>
+
+<section class="slide">
+		<pre>
+		<code>svgContainer.selectAll('rect')</code> 
+		<code>	.data(fData)</code> 
+		<code>	.attr("class", "bar")</code> 
+		<code>	.enter()</code> 
+		<code>	.append('rect')</code>
+		<code>	.attr('x', function (d, i) {</code>		
+		<code>		return i * (w / fData.length);</code>
+		<code>	})</code>
+		<code>	.attr('width', w / fData.length - padding);</code>
+		</pre>
+</section>
+
+
+<section class="slide" id="d3-2">
+		<pre>
+		<code>function renderChart() {</code> 
+		<code>	analyser.getByteFrequencyData(fData);</code> 
+		<code>	svgContainer.selectAll('rect')</code>
+		<code>		.data(fData)</code>  
+		<code>		.attr('y', function(d) {</code> 
+		<code>			return h - d*2.4;</code> 
+		<code>		})</code>
+		<code>		.attr('height', function(d) {</code>		
+		<code>			return d*2.4;</code>
+		<code>		})</code>
+		<code>		.attr('fill', function(d) {</code>		
+		<code>			return 'hsl(' + d + ', 100%, 50%)';</code>
+		<code>		})</code>
+		<code>	audioVisual = requestAnimationFrame(renderChart);</code>
+		<code>}</code>
+		</pre>
+
+		<style>
+			#d3-2  code{
+				font-size: 17px;
+			}
+		</style>
+</section>
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/d3_bars/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+
+
+<section class="slide" id="d3" >
+		<h2>Эксперименты с цветом и скоростью</h2>
+		
+		<style>
+			#d3 h2 {
+				margin:100px 0 0;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+</section>
+
+
+<section class="slide" id="d3-3">
+		<pre>
+		<code>function renderChart() {</code> 
+		<code>	...</code> 
+		<code>	</code> 
+		<code>	.attr('fill', function(d) {</code>		
+		<code>		<mark>return `rgb( 255, ${ 255 - d }, ${ 255 - d } )`;</mark></code>
+		<code>	})</code>
+		<code>	<mark>.transition()</mark></code>
+		<code>		.duration(100)</code>
+		<code>		.attr("height", function(d) {</code>
+    <code>			return d*2.4})</code>
+		<code>			.attr('y', function(d) {</code>
+		<code>			return h - d*2.4;</code>
+		<code>		})</code>
+		<code>}</code>
+		</pre>
+
+		<style>
+			#d3-3  code{
+				font-size: 17px;
+			}
+		</style>
+</section>
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/d3_slow_bars/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+
+<section class="slide" id="d3-4" >
+    <h2>Line chart</h2>
+    
+    <style>
+      #d3-4 h2 {
+        margin:100px 0 0;
+        color:#000;
+        text-align:center;
+        font-size:100px;
+      }
+    </style>
+</section>
+
+<section class="slide" id="d4-4">
+    <pre>
+    <code>let svgContainer = d3.select(".container")</code> 
+    <code>  .append("svg")</code> 
+    <code>  .attr("class", "line-wrap")</code> 
+    <code>  .attr("height", h)</code> 
+    <code>  .attr("width", w);</code> 
+    <code>svgContainer.append("path")</code>
+    <code>   .attr("fill", "none");</code>
+    <code>   .attr("stroke-width", 3)</code>
+    <code>   .attr("stroke", "#00ffff")</code>
+    </pre>
+
+  <style>
+      #d4-4 h2 {
+        margin:100px 0 0;
+        color:#000;
+        text-align:center;
+        font-size:100px;
+      }
+    </style>
+</section>
+
+
+<section class="slide" id="d4-5">
+    <pre>
+    <code>function renderChart() {</code> 
+    <code>  analyser.getByteFrequencyData(fData);</code> 
+    <code>  let fDataArr = Array.from(fData);</code> 
+    <code>  let xyArr = fDataArr.map((item, i) => [</code> 
+    <code>    w / pointAmount * i,</code> 
+    <code>    h - (item * 1.2 + 2)</code>
+    <code>  ]);</code>
+    <code>}</code>
+    </pre>
+
+  <style>
+      #d4-5 h2 {
+        margin:100px 0 0;
+        color:#000;
+        text-align:center;
+        font-size:100px;
+      }
+    </style>
+</section>
+
+<section class="slide" id="d4-6">
+    <pre>
+    <code>function renderChart() {</code> 
+    <code>  ...</code>
+    <code>  <mark>let lineGenerator = d3.line().curve(d3.curveCardinal);</mark></code>
+    <code>  let genData = lineGenerator(xyArr);</code>
+    <code>  svgContainer.select("path")</code>
+    <code>    .attr("d", genData)</code>
+    <code>    .attr("class", "line")</code>
+    <code>    .transition()</code>
+    <code>      .duration(70)</code>
+    <code>      .attr("d", genData);</code>
+    <code>}</code>
+    </pre>
+<style>
+      #d4-6 code {
+        
+        font-size:20px;
+      }
+    </style>
+</section>
+
+<section class="slide demo">
+	<a target="_blank" href="http://katia-trifonova.ru/demos/d3_line/"><h2>demo</h2></a>
+	<style>
+			.demo h2 {
+				margin:100px 0 0;
+				text-transform: uppercase;
+				color:#000;
+				text-align:center;
+				font-size:100px;
+			}
+		</style>
+
+</section>
+
+
+
+<section class="slide" id="d3-4" >
+    <h2>Canvas</h2>
+    
+    <style>
+      #d3-4 h2 {
+        margin:100px 0 0;
+        color:#000;
+        text-align:center;
+        font-size:100px;
+      }
+    </style>
+</section>
+
+
+
+<section class="slide" id="solutions">
+		<h2>Canvas</h2>
+		<ul >
+			<li><a target="_blank" href="https://soniaboller.github.io/audible-visuals/" >Sonia Boller</a></li>
+  		<li><a target="_blank" href="http://hughsk.io/moire-1/" >Hugh Kennedy</a></li>
+  		<li><a target="_blank" href="http://www.patatap.com/" >Jono Brandel</a></li>
+			<li><a target="_blank" href="https://codepen.io/pat_hg/pen/zvMrRJ/" >Patrick Heng</a></li>
+		</ul>
+		<style>
+			#solutions li {
+				margin-bottom: 1em;
+			}
+		</style>
+</section>
+
+
+<section class="slide" id="d3-4" >
+    <h2>Где использовать?</h2>
+    
+    <style>
+      #d3-4 h2 {
+        margin:100px 0 0;
+        color:#000;
+        text-align:center;
+        font-size:100px;
+      }
+    </style>
+</section>
+
+
+<section class="slide" id="solutions">
+		<h2>Canvas</h2>
+		<ul >
+			<li class="next">Промо-сайты</li>
+			<li class="next">Свой SoundCloud</li>
+			<li class="next">Альтернатива музыкальным видео</li>
+			<li class="next">Just for fun</li>
+		</ul>
+		<style>
+			#solutions li {
+				margin-bottom: 1em;
+			}
+		</style>
+</section>
+
+
+<section class="slide" id="solutions">
+		<h2>Что читать</h2>
+		<ul >
+			<li class="next"><a href="https://webaudio.github.io/web-audio-api/">Спецификация Web Audio</a></li>
+			<li class="next"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">MDN web docs</a></li>
+			<li class="next"><a href="https://github.com/willianjusten/awesome-audio-visualization#authors">Awesome audio visualization</a></li>
+		</ul>
+		<style>
+			#solutions li {
+				margin-bottom: 1em;
+			}
+		</style>
+</section>
+
+
+
+
+	
 
 	<footer class="badge">
 		<a href="https://github.com/shower/shower">Fork me on GitHub</a>
