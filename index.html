@@ -320,7 +320,7 @@
 
 <section class="slide" id="webaudio">
 		
-		<h2>2010: Web Audio API</h2>
+		<h2>2011: Web Audio API</h2>
 
 		<style>
 			#webaudio h2 {
@@ -356,31 +356,50 @@
 
 
 	<section class="slide" id="audiocontext">
+		<div id="particles-js"></div>
+
 		<h2>AudioContext</h2>
 		<ul >
-			<li class="next">Граф, состоящий из связанных узлов AudioNode</li>
-			<li class="next">Всё, что происходит при обработке звука, происходит внутри AudioContext</li>
-			<li class="next">Может выступать как слушатель событий и реализует интерфейс EventTarget.</li>
-
+			<li >Граф из связанных узлов AudioNode</li>
+			<li>Всё, что происходит при обработке звука, <br>происходит внутри AudioContext</li>
 		</ul>
 
 		<style>
+
+		#audiocontext {
+				background-color: #fff;
+			}
 			#audiocontext li {
 				margin-bottom: 1em;
 			}
+
+			#audiocontext  #particles-js {
+				position: absolute;
+				/*z-index: 1;*/
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+
 		</style>
 	</section>
 
+
+
 	<section class="slide" id="audiocontext2">
 		<h2>AudioContext</h2>
-		<pre><code class="next">const audioCtx = new AudioContext();</code>
-
-		<p class="next" id="crossbrowser">Кроссбраузерный вариант:</p>
-
-		<code  class="next">const Context = window.AudioContext ||</code> 
-		<code   class="next">					 window.webkitAudioContext;</code>
-		<code   class="next">const audioCtx = new Context();</code>
+		<pre  style="margin-bottom: 60px"><code>const audioCtx = new AudioContext();</code></pre>
+		<div class="next">
+			
+		<h2>Кроссбраузерно:</h2>
+		<pre>
+		<code>const Context = window.AudioContext ||</code> 
+		<code>				window.webkitAudioContext;</code>
+		<code>const audioCtx = new Context();</code>
 		</pre>
+
+		</div>
 		<style>
 			#audiocontext2 p {
 				display: block;
@@ -434,15 +453,21 @@
 
 	<section class="slide" id="mediaelement">
 		<h2>MediaElementAudioSourceNode</h2>
+		<img src="pictures/mediaelement.svg" alt="MediaElementAudioSourceNode">
 		<ul >
-			<li class="next">AudioNode, созданный из &lt;audio&gt;, &lt;video&gt; или new Audio().</li>
-			<li  class="next">Не имеет входов, только один выход.</li>
-			<li class="next">Создаётся методом AudioContext.createMediaElementSource.</li>
+			<li >AudioNode, созданный из &lt;audio&gt;, &lt;video&gt; или new Audio().</li>
+			<li >Не имеет входов, только один выход.</li>
+			<li>Создаётся методом аудиоконтекста createMediaElementSource.</li>
 		</ul>
 
 		<style>
 			#mediaelement li {
 				margin-bottom: 1em;
+			}
+
+			#mediaelement img{
+				width: 50%;
+
 			}
 		</style>
 	</section>
@@ -450,9 +475,10 @@
 
 	<section class="slide" id="mediaelement2">
 		<h2>MediaElementAudioSourceNode</h2>
-		<pre><code class="next">const audioEl = new Audio();</code>
-		<code  class="next">audioEl.src = "kek.mp3";</code> 
-		<code   class="next">const audioSrc = audioCtx.createMediaElementSource(audioEl);</code>
+		<pre><code>const audioEl = new Audio();</code>
+		<code>audioEl.src = "kek.mp3";</code> 
+		<code>const audioSrc = audioCtx.createMediaElementSource(audioEl);</code>
+		<code>audioSrc.connect(audioCtx.destination); <br><span class="comment">// подключаем к выходу на динамик</span></code>
 		</pre>
 
 		
@@ -462,46 +488,41 @@
 	<section class="slide" id="analysernode">
 		<h2>AnalyserNode</h2>
 		<ul >
-			
-			<li>Это AudioNode, который на входе принимает аудиопоток и передаёт его без изменений на выход.</li>
-			<li  class="next">При этом генерирует данные о частоте.</li>
-			<li class="next">Их можно использовать для создания визуализаций</li>
+			<img src="pictures/analyser.svg" alt="analyser">
+			<li>Это AudioNode, который принимает аудиопоток и передаёт его без изменений на выход.</li>
+			<li>При этом генерирует Frequency Data &mdash; данные о частоте.</li>
+			<li>Их можно использовать для создания визуализаций</li>
 		</ul>
 
 		<style>
 			#analysernode li {
-				margin-bottom: 1em;
+				margin-bottom: .5em;
+				font-size: 20px;
 			}
 		</style>
 	</section>
 
-	<section class="slide" id="analysernode3">
-		<h2>AnalyserNode</h2>
-		
-		<img src="pictures/analyser.svg" alt="analyser">
-
-		
+<section class="slide" id="analysernode3">
+		<h2>Frequency Data</h2>
+		<p>Данные, которые генерирует AnalyserNode</p>
+		<pre>
+			<code >const amount = 100</code>
+			<code >const fData = new Uint8Array(amount);</code>
+			<br>
+			<code>analyser.getByteFrequencyData(fData); <span class="comment">//записываются в типизированный массив</span></code>
+		</pre>
 	</section>
 
 	<section class="slide" id="analysernode2">
 		<h2>AnalyserNode</h2>
 		<pre><code>const analyser = audioCtx.createAnalyser();</code>
-		<code>audioSrc.connect(analyser);</code>
-		<code>audioSrc.connect(audioCtx.destination);</code>
+		<code>audioSrc.connect(analyser); <br><span class="comment">// подключаем к анализатору аудиопоток</span></code>
 		</pre>
 
 		
 	</section>
 
-<section class="slide" id="analysernode3">
-		<h2>Frequency Data</h2>
-		<pre>
-			<code >const count = 100</code>
-			<code >const fData = new Uint8Array(count);</code>
-			<br>
-			<code class="next">analyser.getByteFrequencyData(fData);</code>
-		</pre>
-	</section>
+
 
 	<section class="slide" id="analysernode3">
 		<pre>
@@ -514,9 +535,9 @@
 		<code>const analyser = audioCtx.createAnalyser();</code>
 		<code>audioSrc.connect(analyser);</code>
 		<code>audioSrc.connect(audioCtx.destination);</code> 
-		<code >const count = 100;</code>
-		<code >const fData = new Uint8Array(count);</code>
-		<code>let audioVisual; <span class="comment">// здесь будет requestAnimationFrame</span></code> 
+		<code >const amount = 100;</code>
+		<code >const fData = new Uint8Array(amount);</code>
+		<code>let audioVisual; <span class="comment">// переменная для requestAnimationFrame()</span></code> 
 		</pre>
 		<style>
 			#analysernode3 code {
@@ -525,11 +546,42 @@
 		</style>
 	</section>
 
-	<section class="slide" id="easy">
-		<h2 class="shout shrink">EASY</h2>
+	<section class="slide" id="result">
+		<img class="scheme" src="pictures/result.svg" alt="scheme">
+		<img class="bob next" src="pictures/bob.gif" alt="sponge bob">
+		
+
+		<style>
+			#result .scheme {
+				width: 60%;
+
+				position: absolute;
+				top: 60px;
+				left: 50%;
+				margin-left: -30%;
+			}
+			#result .bob {
+				width: 20%;
+				position: absolute;
+				bottom: 50px;
+				right: 50%;
+				margin-right: -22%;
+			}
+		</style>
+	</section>
+
+	<section class="slide" id="steps">
+		<h2>Чтобы создать аудиовизуализацию:</h2>
+		<ol >
+			<li class="next">Объявляем  Audiocontext и подключаем его AudioNodes</li>
+			<li class="next">Отрисовываем элементы визуализации</li>
+			<li class="next">Получаем актуальные Frequency Data и запускаем анимацию</li>
+		</ol>
 </section>
 
-
+<section class="slide">
+	<h2 class="shout shrink">EASY</h2>
+</section>
 
 <section class="slide" id="solutions">
 		<h2>Решения визуализаций</h2>
@@ -541,11 +593,11 @@
 		</ul>
 		<style>
 			#solutions li {
-				margin-bottom: 1em;
+				font-size: 36px;
+				list-style: none !important;
 			}
 		</style>
 </section>
-
 
 
 <section class="slide" id="div">
@@ -1393,6 +1445,13 @@
 	<div class="progress"></div>
 
 	<script src="node_modules/shower-core/shower.min.js"></script>
+	<script src="node_modules/particles.js/particles.js"></script>
+	<script>	
+	particlesJS.load('particles-js', 'node_modules/particles.js/particlesjs-config.json', function() {
+  console.log('callback - particles.js config loaded');
+});
+
+</script>
 	<!-- Copyright © 2018 Yours Truly, Famous Inc. -->
 
 </body>
