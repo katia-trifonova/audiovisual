@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Shower Presentation Engine</title>
+	<title>Визуализация аудио на JavaScript</title>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -918,7 +918,7 @@
 
 <section class="slide">
 		<pre>
-		<code>.visual {</code> 
+		<code>.container {</code> 
 		<code>	...</code> 		
 		<code>	<mark>filter: url("#goo");</mark></code>
 		<code>}</code>
@@ -927,19 +927,40 @@
 
 
 
-
-
-<section class="slide" id="div">
-		<h2>SVG</h2>
-		
+<section class="slide" id="plusminus">
+		<h2>&lt;div&gt;</h2>
+		<div class="double">
+		<ul >
+			<li class="toptop">Плюсы</li>
+			<li>просто</li>
+			<li>много анимируемых CSS-свойств</li>
+		</ul>
+		<ul>
+			<li class="toptop">Минусы</li>
+			<li>Repaint - не ок</li>
+			<li>несемантично</li>
+		</ul>
+		</div>
 		<style>
-			#div h2 {
-				margin:100px 0 0;
-				color:#000;
-				text-align:center;
-				font-size:100px;
+			#plusminus .toptop {
+				margin-bottom: 1em;
+				padding-left: 2em;
 			}
+
+			#plusminus .toptop::before {
+				display: none;
+
+			}
+		
 		</style>
+</section> 
+
+
+
+<section class="slide" >
+		<h2 class="shout shrink">SVG</h2>
+		
+		
 </section>
 
 <section class="slide" id="barsvg">
@@ -1292,6 +1313,53 @@
 </section>
 
 
+<section class="slide" id="d3-4" >
+<a target="_blank" href="http://katia-trifonova.ru/demos/d3_fancy_lines/"><h2>Multiple line chart</h2></a>
+    
+    <style>
+      #d3-4 h2 {
+        margin:100px 0 0;
+        color:#000;
+        text-align:center;
+        font-size:100px;
+      }
+    </style>
+</section>
+
+
+
+
+
+<section class="slide" id="d3-4" >
+<a target="_blank" href="http://katia-trifonova.ru/demos/d3_micro/"><h2>Визулизация с микрофона</h2></a>
+    
+    <style>
+      #d3-4 h2 {
+        margin:100px 0 0;
+        color:#000;
+        text-align:center;
+        font-size:100px;
+      }
+    </style>
+</section>
+
+<section class="slide" id="d4-6">
+	<h2>MediaStreamAudioSourceNode</h2>
+    <pre>
+    <code>const mediaStream = navigator.mediaDevices.getUserMedia({ audio: true });
+</code> 
+    <code>audioSrc = audioCtx.createMediaStreamSource(mediaStream);</code>
+    
+    </pre>
+<style>
+      #d4-6 code {
+        
+        font-size:20px;
+      }
+    </style>
+</section>
+
+
 
 
 <section class="slide" id="d3-4" >
@@ -1312,9 +1380,9 @@
 <section class="slide" id="solutions">
 		<h2>Canvas</h2>
 		<ul >
-			<li><a target="_blank" href="https://soniaboller.github.io/audible-visuals/" >Sonia Boller</a></li>
+			<li><a target="_blank" href="https://lhbzr.com/">Luis Henrique Bizarro</a></li>
+			<li><a target="_blank" href="https://tariqksoliman.github.io/Vissonance/" >Tariq Soliman</a></li>
   		<li><a target="_blank" href="http://hughsk.io/moire-1/" >Hugh Kennedy</a></li>
-  		<li><a target="_blank" href="http://www.patatap.com/" >Jono Brandel</a></li>
 			<li><a target="_blank" href="https://codepen.io/pat_hg/pen/zvMrRJ/" >Patrick Heng</a></li>
 		</ul>
 		<style>
@@ -1326,7 +1394,7 @@
 
 
 <section class="slide" id="d3-4" >
-    <h2>Где использовать?</h2>
+    <h2>Как использовать?</h2>
     
     <style>
       #d3-4 h2 {
@@ -1340,10 +1408,10 @@
 
 
 <section class="slide" id="solutions">
-		<h2>Canvas</h2>
+		<h2>Как использовать?</h2>
 		<ul >
-			<li class="next">Промо-сайты</li>
 			<li class="next">Свой SoundCloud</li>
+			<li class="next">Промо-сайты</li>
 			<li class="next">Альтернатива музыкальным видео</li>
 			<li class="next">Just for fun</li>
 		</ul>
@@ -1355,30 +1423,35 @@
 </section>
 
 
-<section class="slide" id="solutions">
+<section class="slide" id="read">
 		<h2>Что читать</h2>
 		<ul >
-			<li class="next"><a href="https://webaudio.github.io/web-audio-api/">Спецификация Web Audio</a></li>
-			<li class="next"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">MDN web docs</a></li>
-			<li class="next"><a href="https://github.com/willianjusten/awesome-audio-visualization#authors">Awesome audio visualization</a></li>
-			<li class="next"><a href="https://d3js.org/">d3js.org</a></li>
-			<li class="next"><a href="http://shop.oreilly.com/product/0636920026938.do">Interactive Data Visualization for the Web by Scott Murray</a></li>
+			<li ><a href="https://www.w3.org/TR/webaudio/">Спецификация Web Audio</a></li>
+			<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API на MDN web docs</a></li>
+			<li><a href="http://shop.oreilly.com/product/0636920025948.do">Web Audio API by Boris Smus</a></li>
+			<li><a href="https://github.com/willianjusten/awesome-audio-visualization">Awesome audio visualization list</a></li>
+			<li><a href="http://blog.scottlogic.com/2016/01/06/audio-api-with-d3.html">Exploring the Web Audio API with D3 by William Ferguson</a></li>
+			<li><a href="http://shop.oreilly.com/product/0636920026938.do">Interactive Data Visualization for the Web by Scott Murray</a></li>
 		</ul>
 		<style>
-			#solutions li {
-				margin-bottom: 1em;
+			#read li {
+				font-size: 22px;
+
 			}
 		</style>
 </section>
 
-
-
+<section class="slide" id="read">
+		<p>twitter: <a href="https://twitter.com/katiafriday">@katiafriday</a></p>
+		<p>telegram: <a href="https://t.me/trifonova_katia">@trifonova_katia</a></p>
+		<p>github: <a href="https://github.com/katia-trifonova/">katia-trifonova</a></p>
+</section>
 
 	
 
-	<footer class="badge">
+	<!-- <footer class="badge">
 		<a href="https://github.com/shower/shower">Fork me on GitHub</a>
-	</footer>
+	</footer> -->
 
 	<div class="progress"></div>
 
