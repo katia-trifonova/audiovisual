@@ -142,28 +142,7 @@
 		</style>
 </section>
 
-<section class="slide" id="atari2">
-		
-		<h2>Atari Video Music в популярной культуре</h2>
 
-
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/C08EgY8X2bY?start=132" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<style>
-			#atari2  {
-				display: flex;
-				-webkit-flex-direction: column;
-				-moz-flex-direction: column;
-				-ms-flex-direction: column;
-				-o-flex-direction: column;
-				flex-direction: column;
-				justify-content: center;
-				-ms-align-items: center;
-				align-items: center;
-				padding: 0;
-			}
-		</style>
-			
-</section>
 
 <section class="slide" id="soundtolight0">
 		
@@ -702,16 +681,16 @@
 <section class="slide" id="div3">
 		<pre>
 		<code>function renderChart() {</code> 
-		<code>	analyser.getByteFrequencyData(fData);</code>
+		<code>	<mark>analyser.getByteFrequencyData(fData);</mark></code>
 		<code>	for (let i = 0; i < amount; i++) {</code>
-		<code>		let y = fData[i], bar = bars[i];</code>
+		<code>		<mark>let y = fData[i]</mark>, bar = bars[i];</code>
 		<code>		if (bar) {</code>
 		<code>			let hsl = `hsl( ${y} ,100%, 50%)`;</code>
 		<code>			bar.style.backgroundColor = hsl;</code>
 		<code>			bar.style.transform = `scaleY(${y/30})`;</code>
 		<code>		}</code>
 		<code>	}</code> 
-		<code>	audioVisual = requestAnimationFrame(renderChart);</code>
+		<code>	<mark>audioVisual = requestAnimationFrame(renderChart);</mark></code>
 		<code>}</code> 
 		</pre>
 
@@ -778,7 +757,7 @@
 
 
 
-
+<!-- 
 <section class="slide" id="div">
 		<h2>Поиграться с&nbsp;border-&nbsp;radius?</h2>
 		
@@ -790,8 +769,8 @@
 				font-size:100px;
 			}
 		</style>
-</section>
-
+</section> -->
+<!-- 
 <section class="slide">
 		<pre>
 		<code>.bar {</code> 
@@ -800,13 +779,14 @@
 		<code>	border-left: 1px solid #000;</code>
 		<code>	will-change: transform;</code>
 		<code>	transform-origin: 50% 100%;</code>
+		<code><mark>width: 50px;</mark></code>
 		<code>	<mark>border-radius: 50%;</mark></code>
 		<code>}</code>
 		</pre>
 
-</section>
+</section> -->
 
-<section class="slide" id="div">
+<!-- <section class="slide" id="div">
 		<h2>C оттенком спектра?</h2>
 		
 		<style>
@@ -817,10 +797,10 @@
 				font-size:100px;
 			}
 		</style>
-</section>
+</section> -->
 
 
-<section class="slide">
+<!-- <section class="slide">
 		<pre>
 		<code>function renderChart() {</code> 
 		<code>	...</code>
@@ -829,12 +809,12 @@
 		<code>}</code>
 		</pre>
 
-</section>
+</section> -->
 
 
 
 
-<section class="slide demo">
+<!-- <section class="slide demo">
 	<a target="_blank" href="http://katia-trifonova.ru/demos/div_flower/"><h2>DEMO</h2></a>
 	<style>
 			.demo h2 {
@@ -846,7 +826,7 @@
 			}
 		</style>
 
-</section>
+</section> -->
 
 
 <section class="slide" id="div">
@@ -863,14 +843,15 @@
 </section>
 
 
-<section class="slide">
+<section class="slide" id="magic">
 		<pre>
-		<code>.bar {</code> 
+		<code>.bar { </code> 
 		<code>	...</code> 		
 		<code>	<mark>opacity: .5;</mark></code>
+		<code>	<mark>width: 30px;</mark></code>
+		<code>	<mark>border-radius: 50%;</mark></code>
 		<code>}</code>
 		</pre>
-
 		<pre>
 		<code>function renderChart() {</code> 
 		<code>	...</code>
@@ -878,6 +859,14 @@
 		<code>	...</code>
 		<code>}</code>
 		</pre>
+
+
+		<style>
+			#magic code {
+				font-size: 20px;
+			}
+
+		</style>
 
 </section>
 
@@ -1037,9 +1026,9 @@
 		<code>		let y = fData[i], bar = bars[i];</code>
 		<code>		if (bar) {</code>
 		<code>			let hsl = `hsl( ${y} ,100%, 50%)`;</code>
-		<code>			bar.setAttributeNS(null, "height", y*3);</code>
-		<code>			bar.setAttributeNS(null, "y", h - y*3);</code>
-		<code>			bar.setAttributeNS(null, "fill", hsl);</code>
+		<code>			<mark>bar.setAttributeNS(null, "height", y*3);</mark></code>
+		<code>			<mark>bar.setAttributeNS(null, "y", h - y*3);</mark></code>
+		<code>			<mark>bar.setAttributeNS(null, "fill", hsl);</mark></code>
 		<code>		}</code>
 		<code>	}</code> 
 		<code>	audioVisual = requestAnimationFrame(renderChart);</code>
