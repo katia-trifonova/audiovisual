@@ -17,6 +17,7 @@
 
 	<header class="caption">
 		<h1>Визуализация аудио на JavaScript</h1>
+		<p>Катя Трифонова</p>
 	</header>
 
 	<section class="slide" id="cover">
@@ -277,7 +278,24 @@
 		</style>
 	</section>
 	
+	<section class="slide" >
+		
+			<img class="cover" src="pictures/vlm1.png" alt="wmp">
 
+	</section>
+
+
+		<section class="slide" >
+		
+			<img class="cover" src="pictures/vlm2.png" alt="wmp">
+
+	</section>
+
+			<section class="slide" >
+		
+			<img class="cover" src="pictures/vlm3.png" alt="wmp">
+
+	</section>
 
 	<section class="slide">
 		
@@ -291,15 +309,53 @@
 			<li><a href="https://www.youtube.com/watch?v=5Mgt3yM3xBs">WhiteCap</a> (2007)</li>
 			</ol>
 			
-
-
 	</section>
 
 
 
 
+	<section class="slide" >
+		
+			<img class="cover" src="pictures/opencubic.png" alt="wmp">
+
+	</section>
 
 
+	<section class="slide" >
+		
+			<img class="cover" src="pictures/wmp.png" alt="wmp">
+
+	</section>
+
+	<section class="slide" >
+		
+			<img class="cover" src="pictures/win1.png" alt="wmp">
+
+	</section>
+
+	<section class="slide" >
+		
+			<img class="cover" src="pictures/win3.png" alt="wmp">
+
+	</section>
+
+	<section class="slide" >
+		
+			<img class="cover" src="pictures/win5.png" alt="wmp">
+
+	</section>
+
+	<section class="slide" >
+		
+			<img class="cover" src="pictures/win7.png" alt="wmp">
+
+	</section>
+
+	<section class="slide" >
+		
+			<img class="cover" src="pictures/win4.png" alt="wmp">
+
+	</section>
 
 
 
@@ -564,23 +620,27 @@
 		</ol>
 </section>
 
-<section class="slide">
-	<h2 class="shout shrink">EASY</h2>
-</section>
 
 <section class="slide" id="solutions">
 		<h2>Решения визуализаций</h2>
+		<!-- <div class="double"> -->
 		<ul >
 			<li class="next">&lt;div&gt;</li>
 			<li  class="next">SVG</li>
 			<li class="next">SVG на D3.js</li>
 			<li class="next">&lt;canvas&gt;</li>
 		</ul>
+		<!-- </div> -->
 		<style>
 			#solutions li {
-				font-size: 36px;
+				font-size: 32px;
+				/*padding-left: 2em;*/
 				line-height: 1;
 			}
+
+/*			#solutions li::before {
+				display: none;
+			}*/
 		
 		</style>
 </section>
@@ -613,30 +673,20 @@
 </section>
 
 <section class="slide" id="div1">
+		<h2>В HTML - пустой контейнер</h2>
 
 		<pre>
 		<code>&lt;div class="container"&gt;&lt;/div&gt;</code>
 		</pre>
 
-		<style>
-			#div1 {
-				display: -webkit-flex;
-				display: -moz-flex;
-				display: -ms-flex;
-				display: -o-flex;
-				display: flex;
-				-ms-align-items: center;
-				align-items: center;
-				justify-content: center;
-				padding-top: 0;
-			}
-		</style>
+	
 
 </section>
 
 
 
 <section class="slide">
+	<h2>Отрисовываем элементы</h2>
 		<pre>
 		<code>function init() {</code> 
 		<code>	for (let i = 0; i < amount; i++) {</code>
@@ -650,6 +700,7 @@
 </section>
 
 <section class="slide" id="div2">
+	<h2>Стили для первоначального состояния</h2>
 	<div class="double">
 		<pre>
 		<code>.container</code>
@@ -679,6 +730,7 @@
 
 
 <section class="slide" id="div3">
+	<h2>Обновляем Frequency Data и анимируем элементы</h2>
 		<pre>
 		<code>function renderChart() {</code> 
 		<code>	<mark>analyser.getByteFrequencyData(fData);</mark></code>
@@ -696,7 +748,10 @@
 
 		<style>
 			#div3 code {
-				font-size: 22px;
+				font-size: 18px;
+			}
+			#div3 h2 {
+				font-size: 36px;
 			}
 		</style>
 </section>
@@ -717,36 +772,38 @@
 </section>
 
 <section class="slide">
+	<h2>Абсолютное позиционирование элементов</h2>
+	<div class="double">
 		<pre>
 		<code>.container</code>
 		<code>	min-height: 100vh;</code>
 		<code>	width: 100%;</code> 
 		<code>	position: relative;</code> 
 		<code>}</code>
+		<code> </code>
 		</pre>
-</section>
 
-<section class="slide">
+
 		<pre>
 		<code>.bar {</code> 
 		<code>	position: absolute;</code>
 		<code>	bottom: 50%;</code>
 		<code> 	left: 50%;</code>
-		<code>	height: 50px;</code>
-		<code>	width: 1px;</code>		
-		<code>	will-change: transform;</code>
-		<code>	transform-origin: 50% 100%;</code>
+		<code>	...</code>
 		<code>}</code>
 		</pre>
+		</div>
 </section>
 
 <section class="slide">
+
+	<h2>Добавляем в трансформацию rotate</h2>
 		<pre>
 		<code>function renderChart() {</code> 
 		<code>	...</code>
 		<code>	let angle = Math.PI * 2 / amount * i;</code>
 		<code>	let deg = angle * 180 / Math.PI;</code>
-		<code>	bar.style.transform = `rotate(${deg}deg)</code>
+		<code>	bar.style.transform = <mark>`rotate(${deg}deg)</mark></code>
 		<code>						   scaleY(${y/40})`;</code>
 		<code>	...</code>
 		<code>}</code>
@@ -887,6 +944,7 @@
 
 
 <section class="slide" id="goo">
+	<h2>Размещаем фильтр в HTML</h2>
 		<pre>
 		<code>&lt;svg  width="800"&gt;</code> 
 		<code>	&lt;filter id="goo"&gt;</code> 		
@@ -906,6 +964,7 @@
 </section>
 
 <section class="slide">
+	<h2>И применяем к контейнеру-обёртке</h2>
 		<pre>
 		<code>.container {</code> 
 		<code>	...</code> 		
@@ -920,26 +979,30 @@
 		<h2>&lt;div&gt;</h2>
 		<div class="double">
 		<ul >
-			<li class="toptop">Плюсы</li>
+			<li class="toptop">+</li>
 			<li>просто</li>
 			<li>много анимируемых CSS-свойств</li>
 		</ul>
 		<ul>
-			<li class="toptop">Минусы</li>
+			<li class="toptop">&ndash;</li>
 			<li>Repaint - не ок</li>
 			<li>несемантично</li>
 		</ul>
 		</div>
 		<style>
 			#plusminus .toptop {
-				margin-bottom: 1em;
+				/*margin-bottom: 1em;*/
 				padding-left: 2em;
+				font-size: 48px;
 			}
 
 			#plusminus .toptop::before {
 				display: none;
-
+				
 			}
+
+
+
 		
 		</style>
 </section> 
@@ -948,8 +1011,6 @@
 
 <section class="slide" >
 		<h2 class="shout shrink">SVG</h2>
-		
-		
 </section>
 
 <section class="slide" id="barsvg">
@@ -966,15 +1027,15 @@
 </section>
 
 <section class="slide" >
+	<h2>Пустой SVG в body</h2>
 	<pre>
-		<code>&lt;div class="container"&gt;</code> 
-		<code>	&lt;svg width="100%" height="100%" class="chart"&gt;&lt;/svg&gt;</code> 
-		<code>&lt;/div&gt;</code> 
+		<code>&lt;svg width="100%" height="100%" class="chart"&gt;&lt;/svg&gt;</code> 
 	</pre>
 </section>
 
 
 <section class="slide" id="svg">
+	<h2>Отрисовываем элементы &lt;rect&gt;</h2>
 		<pre>
 		<code>const w = window.innerWidth;</code> 
 		<code>const h = window.innerHeight;</code> 
@@ -999,6 +1060,7 @@
 
 
 <section class="slide" id="svg2">
+	<h2>Отрисовываем элементы &lt;rect&gt;</h2>
 	<pre>
 		<code>function init() {</code> 
 		<code>	...</code> 
@@ -1019,6 +1081,7 @@
 
 
 <section class="slide" id="svg3">
+	<h2>Обновляем атрибуты и запускаем анимацию</h2>
 		<pre>
 		<code>function renderChart() {</code> 
 		<code>	analyser.getByteFrequencyData(fData);</code>
@@ -1037,7 +1100,7 @@
 
 		<style>
 			#svg3 code {
-				font-size: 20px;
+				font-size: 17px;
 			}
 		</style>
 </section>
@@ -1064,20 +1127,20 @@
 
 
 <section class="slide" id="svg4">
+	<h2>Ошибка в коде → новая визуализация</h2>
 		<pre>
 		<code>function init() {</code> 
 		<code>	...</code>
 		<code>	rect.setAttributeNS(null, "width", <mark>w / amount - padding</mark>);</code>
-		<code>}</code> 
+		<code>} <span class="comment">// правильно</span></code> 
 		</pre>
 
-		<span>↓</span>
 
 		<pre>
 		<code>function init() {</code> 
 		<code>	...</code>
 		<code>	rect.setAttributeNS(null, "width", <mark>i * w / amount</mark>);</code>
-		<code>}</code> 
+		<code>} <span class="comment">// по-другому</span></code>
 		</pre>
 
 	
@@ -1112,17 +1175,14 @@
 </section>
 
 
-<section class="slide" >
+
+<section class="slide">
+	<h2>HTML</h2>
 		<pre>
 		<code>&lt;div class="container"&gt;</code> 
 		<code>&lt;/div"&gt;</code> 
 		
 		</pre>
-
-	
-</section>
-
-<section class="slide">
 		<pre>
 		<code>let svgContainer = d3.select(".container")</code> 
 		<code>	.append("svg")</code> 
@@ -1135,7 +1195,8 @@
 	
 </section>
 
-<section class="slide">
+<section class="slide" id="d3-0">
+	<h2>Генерируем элементы &lt;rect&gt;</h2>
 		<pre>
 		<code>svgContainer.selectAll('rect')</code> 
 		<code>	.data(fData)</code> 
@@ -1147,10 +1208,17 @@
 		<code>	})</code>
 		<code>	.attr('width', w / fData.length - padding);</code>
 		</pre>
+
+		<style>
+			#d3-0  code {
+				font-size: 20px;
+			}
+		</style>
 </section>
 
 
 <section class="slide" id="d3-2">
+	<h2>Анимируем</h2>
 		<pre>
 		<code>function renderChart() {</code> 
 		<code>	analyser.getByteFrequencyData(fData);</code> 
@@ -1171,7 +1239,7 @@
 
 		<style>
 			#d3-2  code{
-				font-size: 17px;
+				font-size: 14px;
 			}
 		</style>
 </section>
@@ -1194,6 +1262,7 @@
 
 
 <section class="slide" id="d3-3">
+	<h2>Обновляем цвет через rgb и замедляем анимацию</h2>
 		<pre>
 		<code>function renderChart() {</code> 
 		<code>	...</code> 
@@ -1212,8 +1281,12 @@
 		</pre>
 
 		<style>
+
+			#d3-3 h2 {
+				font-size: 36px;
+			}
 			#d3-3  code{
-				font-size: 17px;
+				font-size: 16px;
 			}
 		</style>
 </section>
@@ -1234,6 +1307,7 @@
 </section>
 
 <section class="slide" id="d4-4">
+	 <h2>Создаем элемент &lt;path&gt;</h2>
     <pre>
     <code>let svgContainer = d3.select(".container")</code> 
     <code>  .append("svg")</code> 
@@ -1247,17 +1321,21 @@
     </pre>
 
   <style>
-      #d4-4 h2 {
+     /* #d4-4 h2 {
         margin:100px 0 0;
         color:#000;
         text-align:center;
         font-size:100px;
+      }*/
+      #d4-4 code {
+				font-size: 20px;
       }
     </style>
 </section>
 
 
 <section class="slide" id="d4-5">
+		<h2>Трансформируем массив Frequency Data</h2>
     <pre>
     <code>function renderChart() {</code> 
     <code>  analyser.getByteFrequencyData(fData);</code> 
@@ -1270,16 +1348,22 @@
     </pre>
 
   <style>
-      #d4-5 h2 {
+      /*#d4-5 h2 {
         margin:100px 0 0;
         color:#000;
         text-align:center;
         font-size:100px;
+      }*/
+
+      #d4-5 code {
+        
+        font-size:22px;
       }
     </style>
 </section>
 
 <section class="slide" id="d4-6">
+		<h2>Генерируем кривую из данных нового массива</h2>
     <pre>
     <code>function renderChart() {</code> 
     <code>  ...</code>
@@ -1296,7 +1380,12 @@
 <style>
       #d4-6 code {
         
-        font-size:20px;
+        font-size:18px;
+      }
+
+      #d4-6 h2 {
+        
+        font-size:36px;
       }
     </style>
 </section>
@@ -1415,11 +1504,14 @@
 <section class="slide" id="read">
 		<h2>Что читать</h2>
 		<ul >
+			<li><mark><a href="https://github.com/willianjusten/awesome-audio-visualization">Awesome audio visualization list</a></mark></li>
+			<li><a href="http://blog.scottlogic.com/2016/01/06/audio-api-with-d3.html">Exploring the Web Audio API with D3 by William Ferguson</a></li>
+
 			<li ><a href="https://www.w3.org/TR/webaudio/">Спецификация Web Audio</a></li>
 			<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API на MDN web docs</a></li>
 			<li><a href="http://shop.oreilly.com/product/0636920025948.do">Web Audio API by Boris Smus</a></li>
-			<li><a href="https://github.com/willianjusten/awesome-audio-visualization">Awesome audio visualization list</a></li>
-			<li><a href="http://blog.scottlogic.com/2016/01/06/audio-api-with-d3.html">Exploring the Web Audio API with D3 by William Ferguson</a></li>
+			
+			
 			<li><a href="http://shop.oreilly.com/product/0636920026938.do">Interactive Data Visualization for the Web by Scott Murray</a></li>
 		</ul>
 		<style>
@@ -1430,10 +1522,23 @@
 		</style>
 </section>
 
-<section class="slide" id="read">
-		<p>twitter: <a href="https://twitter.com/katiafriday">@katiafriday</a></p>
-		<p>telegram: <a href="https://t.me/trifonova_katia">@trifonova_katia</a></p>
-		<p>github: <a href="https://github.com/katia-trifonova/">katia-trifonova</a></p>
+<section class="slide" id="end">
+		<h2>Спасибо</h2>
+		<p><img src="pictures/twi.svg" alt=""><a href="https://twitter.com/katiafriday">@katiafriday</a></p>
+		<p><img src="pictures/tele.svg" alt=""><a href="https://t.me/trifonova_katia">@trifonova_katia</a></p>
+
+<style>
+	#end  h2{
+		font-size:100px;
+		margin-bottom: .5em;
+	}
+
+	#end  img{
+		display: inline-block;
+		margin-right: 1em;
+		margin-bottom: -.4em;
+	}
+</style>
 </section>
 
 	
@@ -1446,12 +1551,10 @@
 
 	<script src="node_modules/shower-core/shower.min.js"></script>
 	<script src="node_modules/particles.js/particles.js"></script>
-	<script>	
-	particlesJS.load('particles-js', 'node_modules/particles.js/particlesjs-config.json', function() {
-  console.log('callback - particles.js config loaded');
-});
+	<script src="node_modules/particles.js/init.js"></script>
+	<script src="./particles.js"></script>
+	<script src="./init.js"></script>
 
-</script>
 	<!-- Copyright © 2018 Yours Truly, Famous Inc. -->
 
 </body>
